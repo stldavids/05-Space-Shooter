@@ -29,10 +29,22 @@ class Window(arcade.Window):
 
 
     def setup(self):
-        pass 
+        x = 400
+        y = 300
+        self.player_sprite = arcade.Sprite("assets/{animal}.png".format(animal=animal), 0.5)
+        self.player_sprite.center_x = x
+        self.player_sprite.center_y = y
+        self.player_sprite.position = Vector2
+        self.player_sprite.direction = Vector2(pos)
+        self.player_sprite.angle = 0
+        self.player_sprite.angle_speed = 0
+        self.player_sprite.center_x = x
+        self.player_sprite.center_y = y
+
+
 
     def update(self, delta_time):
-        pass
+
 
     def on_draw(self):
         """ Called whenever we need to draw the window. """
