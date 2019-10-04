@@ -1,4 +1,4 @@
-import sys, logging, json, open_color, arcade
+import sys, logging, json, arcade
 
 #check to make sure we are running the right version of Python
 version = (3,7)
@@ -11,6 +11,7 @@ logger = logging.getLogger(__name__)
 SCREEN_WIDTH = 800
 SCREEN_HEIGHT = 600
 SCREEN_TITLE = ""
+MOVEMENT_SPEED = 5
 
 
 class Window(arcade.Window):
@@ -24,32 +25,37 @@ class Window(arcade.Window):
         # So we just see our object, not the pointer.
         self.set_mouse_visible(False)
 
-        arcade.set_background_color(open_color.black)
+        arcade.set_background_color(arcade.color.BLACK_LEATHER_JACKET)
+
+        # Sprite lists
+        self.player_list = None
+
+        # Set up the player
+        self.score = 0
+        self.player = None
 
 
 
     def setup(self):
-        x = 400
-        y = 300
-        self.player_sprite = arcade.Sprite("assets/{animal}.png".format(animal=animal), 0.5)
-        self.player_sprite.center_x = x
-        self.player_sprite.center_y = y
-        self.player_sprite.position = Vector2
-        self.player_sprite.direction = Vector2(pos)
-        self.player_sprite.angle = 0
-        self.player_sprite.angle_speed = 0
-        self.player_sprite.center_x = x
-        self.player_sprite.center_y = y
+        self.player_list = arcade.SpriteList()
+
+        # Set up the player
+        self.score = 0
+        self.player = arcade.Sprite(assets/PNG/playerShip2_blue, 1)
+        self.player.center_x = SCREEN_WIDTH // 2
+        self.player.center_y = SCREEN_HEIGHT // 2
+        self.player_list.append(self.player)
 
 
 
     def update(self, delta_time):
-
+        pass
 
     def on_draw(self):
         """ Called whenever we need to draw the window. """
         arcade.start_render()
-
+        self.player_list.draw
+        print('player drawn')
 
 
 
@@ -72,16 +78,21 @@ class Window(arcade.Window):
     def on_key_press(self, key, modifiers):
         """ Called whenever the user presses a key. """
         if key == arcade.key.LEFT:
-            print("Left")
+            self.player.change_y = MOVEMENT_SPEED
         elif key == arcade.key.RIGHT:
-            print("Right")
+            self.player.change_y = -MOVEMENT_SPEED
         elif key == arcade.key.UP:
-            print("Up")
+            self.player.change_x = -MOVEMENT_SPEED
         elif key == arcade.key.DOWN:
-            print("Down")
+            self.player.change_x = MOVEMENT_SPEED
 
     def on_key_release(self, key, modifiers):
         """ Called whenever a user releases a key. """
+        #When the user releases the keys, the players movement stops.
+        if key == arcade.key.UP or key == arcade.key.DOWN:
+            self.player.change_y = 0
+        elif key == arcade.key.LEFT or key == arcade.key.RIGHT:
+            self.player.change_x = 0
         pass
 
 
