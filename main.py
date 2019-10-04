@@ -19,6 +19,7 @@ BULLET_DAMAGE = 10
 ENEMY_HP = 100
 HIT_SCORE = 10
 KILL_SCORE = 100
+ENEMY_SPEED = 5
 
 class Bullet(arcade.Sprite):
     def __init__(self, position, velocity, damage):
@@ -28,7 +29,7 @@ class Bullet(arcade.Sprite):
             velocity: (dx, dy) tuple
             damage: int (or float)
         '''
-        super().__init__("assets/bullet.png", 0.5)
+        super().__init__("assets/PNG/Lasers/laserGreen07.png", 0.5)
         (self.center_x, self.center_y) = position
         (self.dx, self.dy) = velocity
         self.damage = damage
@@ -58,6 +59,7 @@ class Enemy(arcade.Sprite):
         (self.center_x, self.center_y) = position
 
 
+
         
 
 
@@ -69,7 +71,7 @@ class Window(arcade.Window):
         os.chdir(file_path)
 
         self.set_mouse_visible(True)
-        arcade.set_background_color(arcade.color.BLACK_LEATHER_JACKET)
+        arcade.set_background_color(arcade.color.PURPLE_NAVY)
         self.bullet_list = arcade.SpriteList()
         self.enemy_list = arcade.SpriteList()
         self.player = Player()
@@ -96,6 +98,13 @@ class Window(arcade.Window):
                     if e.hp <= 0:
                         self.enemy_list.remove(e)
                         self.score += KILL_SCORE
+        
+        for e in self.enemy_list:
+            e.center_x += ENEMY_SPEED
+
+
+
+
 
             
 
