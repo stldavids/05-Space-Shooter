@@ -19,7 +19,7 @@ BULLET_DAMAGE = 10
 ENEMY_HP = 100
 HIT_SCORE = 10
 KILL_SCORE = 100
-ENEMY_SPEED = 5
+ENEMY_SPEED = 3
 
 class Bullet(arcade.Sprite):
     def __init__(self, position, velocity, damage):
@@ -54,9 +54,11 @@ class Enemy(arcade.Sprite):
         initializes a penguin enemy
         Parameter: position: (x,y) tuple
         '''
+    
         super().__init__("assets/PNG/shipBeige_manned.png", 0.5)
         self.hp = ENEMY_HP
         (self.center_x, self.center_y) = position
+        self.speed = ENEMY_SPEED
 
 
 
@@ -71,7 +73,7 @@ class Window(arcade.Window):
         os.chdir(file_path)
 
         self.set_mouse_visible(True)
-        arcade.set_background_color(arcade.color.PURPLE_NAVY)
+        self.background = None
         self.bullet_list = arcade.SpriteList()
         self.enemy_list = arcade.SpriteList()
         self.player = Player()
@@ -85,7 +87,9 @@ class Window(arcade.Window):
             x = 120 * (i+1) + 40
             y = 500
             enemy = Enemy((x,y))
-            self.enemy_list.append(enemy)            
+            self.enemy_list.append(enemy)   
+
+        self.background = arcade.load_texture('assets/BG.jpg')
 
     def update(self, delta_time):
         self.bullet_list.update()
@@ -99,17 +103,25 @@ class Window(arcade.Window):
                         self.enemy_list.remove(e)
                         self.score += KILL_SCORE
         
+
+
+
         for e in self.enemy_list:
-            e.center_x += ENEMY_SPEED
+            if e.center_x > 750:
+                e.speed = -e.speed
+
+            if e.center_x < 50:
+                e.speed = -e.speed
+                    
+            e.center_x += e.speed
 
 
 
-
-
-            
 
     def on_draw(self):
         arcade.start_render()
+        arcade.draw_texture_rectangle(SCREEN_WIDTH // 2, SCREEN_HEIGHT // 2,
+                                      SCREEN_WIDTH, SCREEN_HEIGHT, self.background)
         arcade.draw_text(str(self.score), 20, SCREEN_HEIGHT - 40, arcade.color.GHOST_WHITE, 16)
         self.player.draw()
         self.bullet_list.draw()
