@@ -1,0 +1,38 @@
+Name: Dakota Erickson   
+Date: 10/19/2019
+Project: Space Shooter
+Peer's repository: https://github.com/stldavids/05-Space-Shooter.git
+
+
+
+What is something you learned by reviewing your peer's project?
+
+ Moving the enemies back and forth was different than i expected
+
+What is something you saw in your peer's project that you would like to apply to your own programming projects?
+
+ I think stephanie did a really good job at using prior projects (like the bullet excercise) and implementing that code into different projects. Seems really efficient and a good understanding of when to use certain code. 
+
+What suggestions would you have for your peer to improve his/her code?
+
+More comments!
+
+What could have been clearer or better commented?
+
+Probably a lot. One line even says "initializes a penguin enemy" 
+
+Was there anything in the code that was confusing to you? If so, what?
+
+ Not really. After realizing what each part was doing, it is pretty straightforward.
+
+Does the repository contain an appropriate LICENSE?
+
+ yup
+
+What is something he/she could add to the README.md to make it more descriptive?
+
+ Why it was made, number of enemies, etc. 
+
+Pay a compliment to your peer based on the quality of his/her code.
+
+Seems like you immediately knew what you wanted to do and you executed it quickly and efficiently. No random code blocks that don't really do anything. 
